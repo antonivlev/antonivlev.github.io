@@ -9,7 +9,7 @@ peer.on('open', (id) => {
 	document.querySelector('#my-id').innerText = id;
 })
 
-navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+navigator.mediaDevices.getUserMedia({ video: true, audio: true })
 	.then(stream => {
 		addStreamToVid(stream, 'me');
 		state.stream = stream;
