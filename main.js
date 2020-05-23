@@ -3,7 +3,12 @@ let state = {
 	id: null
 }
 
-let peer = new Peer(); 
+let peer = new Peer({
+	host: 'aace7297.ngrok.io',
+	port: '',
+	path: '/myapp'
+}); 
+
 peer.on('open', (id) => {
 	state.id = id;
 	document.querySelector('#my-id').innerText = id;
