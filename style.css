@@ -1,3 +1,7 @@
+body {
+	background-color: black;
+}
+
 .canvases {
     display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -15,6 +19,3 @@
 .flipBoth {
 	transform: scale(-1, -1);
 }
-
-
-

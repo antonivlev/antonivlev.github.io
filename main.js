@@ -1,23 +1,6 @@
-let state = {
-	stream: null,
-	id: null
-}
-
-let peer = new Peer({
-	host: 'aace7297.ngrok.io',
-	port: '',
-	path: '/myapp'
-}); 
-
-peer.on('open', (id) => {
-	state.id = id;
-	document.querySelector('#my-id').innerText = id;
-})
-
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+navigator.mediaDevices.getUserMedia({ video: true, audio: false })
 	.then(stream => {
 		addStreamToVid(stream, 'me');
-		state.stream = stream;
 	})
 	.catch(err => console.log(err));
 
@@ -27,20 +10,21 @@ let addStreamToVid = (stream, videoID) => {
 	vid.onloadedmetadata = () => vid.play();
 }
 
-let callFriend = () => {
-	let friendID = document.querySelector('#friend-id').value;
-	console.log('calling friend: ', friendID);
+let t = 0;
 
-	let call = peer.call(friendID, state.stream);
-	call.on('stream', (remoteStream) => {
-		console.log(remoteStream);
-		addStreamToVid(remoteStream, 'friend');
-	});
-}
+document.querySelectorAll('canvas').forEach(canvas => {
+	let seriously = new Seriously();
+	let me = seriously.source('#me');
+	let target = seriously.target(canvas);
+	let effect = seriously.effect('hue-saturation');
 
-peer.on('call', (call) => {
-	call.answer(state.stream);
-	call.on('stream', (remoteStream) => {
-		addStreamToVid(remoteStream, 'friend');
-	});
-});
+	setInterval(() => {
+		t += 0.01
+		effect.hue = Math.sin(t);
+	}, 200);
+	
+	// connect all our nodes in the right order
+	effect.source = me;
+	target.source = effect;
+	seriously.go();
+})

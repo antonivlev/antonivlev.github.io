@@ -1,14 +1,24 @@
+<!DOCTYPE html>
+<html>
 <head>
-    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+	<title>Hazy</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
-    <input id="friend-id"></input>
-    <button id="call-button" onclick="callFriend()">call</button>
+	<video id="me" style="display: none;"></video>
+	<div class="canvases">
+		<canvas id="canvas" width="640" height="480"></canvas>
+		<canvas class="flipX" id="canvas" width="640" height="480"></canvas>
+		<canvas id="canvas" width="640" height="480"></canvas>
+		<canvas class="flipY" id="canvas" width="640" height="480"></canvas>
+		<canvas class="flipBoth" id="canvas" width="640" height="480"></canvas>
+		<canvas class="flipY" id="canvas" width="640" height="480"></canvas>	
+	</div>
 
-    <h1 id="my-id">...</h1>
-    <video id="me" muted></video>
-    <video id="friend"></video>
-    <script src="main.js"></script>
+	<!-- page content goes here -->
+	<script src="lib/seriously.js"></script>
+	<script src="lib/effects/seriously.hue-saturation.js"></script>
+
+	<script src="main.js"></script>
 </body>
-
+</html>
