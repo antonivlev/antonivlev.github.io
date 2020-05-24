@@ -20,8 +20,8 @@ document.querySelectorAll('canvas').forEach(canvas => {
 
 	setInterval(() => {
 		t += 0.01
-		effect.hue = Math.sin(4*t);
-	}, 200);
+		effect.hue = Math.sin(10*t);
+	}, 100);
 	
 	// connect all our nodes in the right order
 	effect.source = me;
