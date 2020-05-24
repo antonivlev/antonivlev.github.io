@@ -1,0 +1,20 @@
+.canvases {
+    display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	overflow: hidden;
+}
+
+.flipX {
+	transform: scaleX(-1);
+}
+
+.flipY {
+	transform: scaleY(-1);
+}
+
+.flipBoth {
+	transform: scale(-1, -1);
+}
+
+
+
