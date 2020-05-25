@@ -21,6 +21,7 @@ document.querySelectorAll('canvas').forEach(canvas => {
 	setInterval(() => {
 		t += 0.01
 		effect.hue = Math.sin(10*t);
+		effect.saturation = Math.sin(0.6*t);
 	}, 100);
 	
 	// connect all our nodes in the right order
