@@ -4,6 +4,10 @@ body {
 	background-size: 12%;
 }
 
+canvas {
+	width: 70%;
+}
+
 .canvases {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
