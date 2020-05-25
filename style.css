@@ -1,6 +1,7 @@
 body {
 	background-image: url("HAZY.png");
 	background-color: black;
+	background-size: 12%;
 }
 
 .canvases {
