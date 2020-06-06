@@ -1798,7 +1798,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t = text(t_value);
-    			add_location(p, file$2, 118, 2, 3208);
+    			add_location(p, file$2, 118, 2, 3171);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -1982,7 +1982,7 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			p.textContent = "waiting...";
-    			add_location(p, file$2, 110, 2, 3029);
+    			add_location(p, file$2, 110, 2, 2992);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -2030,7 +2030,7 @@ var app = (function () {
     			div = element("div");
     			info.block.c();
     			attr_dev(div, "class", "svelte-18sk4p0");
-    			add_location(div, file$2, 107, 0, 2982);
+    			add_location(div, file$2, 107, 0, 2945);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2188,7 +2188,7 @@ var app = (function () {
     	const roomURL = window.location.pathname;
 
     	const server = {
-    		host: "peerbroker-env.eba-svebdqm2.eu-west-2.elasticbeanstalk.com",
+    		host: "030542a71cf2.ngrok.io",
     		port: "",
     		path: "/myapp"
     	};
