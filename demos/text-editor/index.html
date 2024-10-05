@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <style type="text/css">
+      body {
+        overscroll-behavior: none;
+      }
+
+      canvas {
+        border: 1px solid lightgrey;
+        width: 400px;
+        height: 600px;
+        padding: 0px;
+      }
+
+      #debug {
+        font-family: monospace;
+        font-size: 10px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: lightgrey;
+        padding: 2px;
+        white-space: pre-wrap;
+      }
+
+      button {
+        background-color: white;
+        border: 1px solid lightgrey;
+        border-radius: 4px;
+        font-weight: 400;
+        font-weight: 600;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button:hover {
+        background-color: lightgrey;
+      }
+      [data-active="true"] {
+        background-color: lightblue;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="toolbar">
+      <button id="btn-title">T</button>
+      <button id="btn-bold">B</button>
+      <button id="btn-highlight">🖌</button>
+    </div>
+    <div style="height: 8px"></div>
+    <canvas id="canvas"></canvas>
+    <div id="debug"></div>
+  </body>
+
+  <script src="main.js"></script>
+</html>
