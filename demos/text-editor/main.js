@@ -30,6 +30,7 @@ const ARROW_KEYS = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 const STYLE_FIELD_TO_VALUE = {
   fontSize: 24,
   fontWeight: "bold",
+  bgColor: "yellow",
 };
 
 const STYLE_FIELDS = Object.keys(STYLE_FIELD_TO_VALUE);
@@ -211,6 +212,13 @@ const drawSelectionBox = ({ x, y, ctx, char }) => {
   ctx.fillStyle = prevFillStyle;
 };
 
+const drawBox = ({ x, y, ctx, char, fillStyle }) => {
+  const prevFillStyle = ctx.fillStyle;
+  ctx.fillStyle = fillStyle;
+  ctx.fillRect(x, y - LINE_HEIGHT, ctx.measureText(char).width, LINE_HEIGHT);
+  ctx.fillStyle = prevFillStyle;
+};
+
 const drawDoc = ({ doc, ctx }) => {
   ctx.clearRect(0, 0, VIEW_W * SF, VIEW_H * SF);
   const { text, selectionStart, selectionEnd, styles } = doc;
@@ -236,12 +244,16 @@ const drawDoc = ({ doc, ctx }) => {
       drawCaret({ x, y: y - scrollY, ctx });
     }
 
-    if (styles[i]) {
-      ctx.font = `${styles[i]?.fontWeight || ""} ${
-        doc.styles[i].fontSize * SF
-      }px Arial`;
+    const { fontSize, fontWeight, bgColor } = styles[i] || {};
+    if (fontSize) {
+      ctx.font = `${fontSize * SF}px Arial`;
     }
-
+    if (fontWeight) {
+      ctx.font = `${fontWeight} ${ctx.font}`;
+    }
+    if (bgColor) {
+      drawBox({ x, y: y - scrollY, ctx, char: text[i], fillStyle: bgColor });
+    }
     if (i >= selSmaller && i < selBigger) {
       drawSelectionBox({ x, y: y - scrollY, ctx, char: text[i] });
     }
@@ -348,12 +360,25 @@ const onMouseUp = e => {
 };
 
 const activateToolbarButtons = doc => {
-  const isSelectionTitle = doc.styles
+  const selectionStyle = doc.styles
     .slice(doc.selectionStart, doc.selectionEnd)
-    .find(s => s?.fontSize === 24);
+    .reduce((acc, s) => ({ ...acc, ...s }), {});
+
+  const isSelectionTitle = selectionStyle?.fontSize === 24;
+  const isSelectionBold = selectionStyle?.fontWeight === "bold";
+  const isSelectionHighlight = selectionStyle?.bgColor === "yellow";
 
   const btnTitle = document.querySelector("#btn-title");
   btnTitle.setAttribute("data-active", isSelectionTitle ? "true" : "false");
+
+  const btnBold = document.querySelector("#btn-bold");
+  btnBold.setAttribute("data-active", isSelectionBold ? "true" : "false");
+
+  const btnHighlight = document.querySelector("#btn-highlight");
+  btnHighlight.setAttribute(
+    "data-active",
+    isSelectionHighlight ? "true" : "false"
+  );
 };
 
 const onMouseMove = e => {
@@ -397,3 +422,6 @@ btnTitle.addEventListener("click", e => onClickToggleStyle(e, "fontSize"));
 
 const btnBold = document.querySelector("#btn-bold");
 btnBold.addEventListener("click", e => onClickToggleStyle(e, "fontWeight"));
+
+const btnHighlight = document.querySelector("#btn-highlight");
+btnHighlight.addEventListener("click", e => onClickToggleStyle(e, "bgColor"));
