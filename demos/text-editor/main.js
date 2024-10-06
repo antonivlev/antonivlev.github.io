@@ -207,7 +207,7 @@ const drawCaret = ({ x, y, ctx }) => {
 
 const drawSelectionBox = ({ x, y, ctx, char }) => {
   const prevFillStyle = ctx.fillStyle;
-  ctx.fillStyle = "lightblue";
+  ctx.fillStyle = "#0000FF22";
   ctx.fillRect(x, y - LINE_HEIGHT, ctx.measureText(char).width, LINE_HEIGHT);
   ctx.fillStyle = prevFillStyle;
 };
